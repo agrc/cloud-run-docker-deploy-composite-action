@@ -19,6 +19,12 @@ inputs:
   env-vars:
     description: Environment variables to set in the Cloud Run deploy. (e.g. WEB_API_KEY=value,SOMETHING_ELSE=value)
     required: false
+  mounted-secrets:
+    description: Cloud run secret mounts. (e.g. /secret/folder/file=secret:latest)
+    required: false
+  docker-build-args:
+    description: Environment variables to set in the docker image build. (e.g. VITE_DISCOVER=value,VITE_PRINT_PROXY=value)
+    required: false
   region:
     description: GCP region
     default: us-central1
@@ -85,6 +91,7 @@ runs:
         builder: ${{ steps.builder.outputs.name }}
         tags: ${{ steps.meta.outputs.tags }}
         context: .
+        build-args: ${{ inputs.docker-build-args }}
         push: true
         cache-from: type=gha
         cache-to: type=gha,mode=max
@@ -98,6 +105,7 @@ runs:
         region: ${{ inputs.region }}
         env_vars: ${{ inputs.env-vars }}
         flags: ${{ inputs.flags }}
+        secrets: ${{ inputs.mounted-secrets }}
 
     - name: 🔔 Publish deployment worknote
       uses: agrc/service-now-worknote-action@v1

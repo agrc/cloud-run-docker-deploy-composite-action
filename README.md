@@ -6,12 +6,54 @@ A GitHub Action that builds and deploys a docker image to GCP Cloud Run
 
 Note that the following inputs map directly to the [google-github-actions/deploy-cloudrun inputs](https://github.com/google-github-actions/deploy-cloudrun#inputs):
 
-* `env-vars`
-* `flags`
-* `region`
-* `service`
+- `env-vars`
+- `flags`
+- `region`
+- `service`
+- `mounted-secrets`*
+
+_* doesn't map directly*
+
+Note that the following inputs map directly to the [docker/build-push-action](https://github.com/docker/build-push-action#inputs) with a `docker-` prefix:
 
 ```yml
+name: Push Events
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+
+permissions:
+  contents: write
+  id-token: write
+  deployments: write
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release:
+    name: Create release
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+
+    steps:
+      - name: 🚀 Create Release
+        id: release
+        uses: agrc/release-composite-action@v1
+        with:
+          prerelease: ${{ github.ref_name == 'dev' }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          github-app-id: ${{ secrets.UGRC_RELEASE_BOT_APP_ID }}
+          github-app-key: ${{ secrets.UGRC_RELEASE_BOT_APP_KEY }}
+          github-app-name: ${{ secrets.UGRC_RELEASE_BOT_NAME }}
+          github-app-email: ${{ secrets.UGRC_RELEASE_BOT_EMAIL }}
+          
   deploy-dev:
     name: Deploy to staging
     runs-on: ubuntu-latest

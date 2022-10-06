@@ -1,0 +1,105 @@
+name: Deploy
+description: Deploy action for python project hosted in GCP Cloud Run
+inputs:
+  identity-provider:
+    description: Identity Provider
+    required: true
+  service-account-email:
+    description: Service Account Email
+    required: true
+  project-id:
+    description: GCP Project ID
+    required: true
+  service:
+    description: The name of the Cloud Run service
+    required: true
+  flags:
+    description: Cloud Run deploy flags specific to the environment
+    required: false
+  env-vars:
+    description: Environment variables to set in the Cloud Run deploy. (e.g. WEB_API_KEY=value,SOMETHING_ELSE=value)
+    required: false
+  region:
+    description: GCP region
+    default: us-central1
+    required: false
+  service-now-instance:
+    description: the sub address to https://{service-now-instance}.service-now.com
+    required: false
+  service-now-table:
+    description: the parent table name to write to
+    required: false
+  service-now-system-id:
+    description: the child record id to write to
+    required: false
+  service-now-username:
+    description: the service account name
+    required: false
+  service-now-password:
+    description: the service account password
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: 🗝️ Authenticate to Google Cloud
+      id: auth
+      uses: google-github-actions/auth@v0
+      with:
+        create_credentials_file: true
+        token_format: access_token
+        workload_identity_provider: inputs.identity-provider
+        service_account: inputs.service-account-email
+
+    - name: 🐳 Set up Docker Buildx
+      id: builder
+      uses: docker/setup-buildx-action@v2
+
+    - name: 🗝️ Authenticate Docker to Google CLoud
+      uses: docker/login-action@v2
+      with:
+        registry: gcr.io
+        username: oauth2accesstoken
+        password: steps.auth.outputs.access_token
+
+    - name: 🏷️ Extract tags from GitHub
+      id: meta
+      uses: docker/metadata-action@v4
+      with:
+        images: gcr.io/${{ inputs.project-id }}/${{ inputs.service }}
+        tags: |
+          type=ref,suffix=-{{sha}},event=branch
+          type=ref,prefix=pr-,suffix=-{{sha}},event=pr
+          type=semver,pattern={{version}}
+          latest
+
+    - name: 📦 Build and push image
+      uses: docker/build-push-action@v3
+      with:
+        builder: steps.builder.outputs.name
+        tags: steps.meta.outputs.tags
+        context: .
+        push: true
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+    - name: 🚀 Deploy to Cloud Run
+      id: deploy
+      uses: google-github-actions/deploy-cloudrun@v0
+      with:
+        service: inputs.service
+        image: gcr.io/${{ inputs.project-id }}/${{ inputs.service }}:latest
+        region: inputs.region
+        env_vars: inputs.env-vars
+        flags: inputs.flags
+
+    - name: 🔔 Publish deployment worknote
+      uses: agrc/service-now-worknote-action@v1
+      if: inputs.service-now-system-id
+      with:
+        repo-token: inputs.repo-token
+        username: inputs.service-now-username
+        password: inputs.service-now-password
+        instance-name: inputs.service-now-instance
+        table-name: inputs.service-now-table
+        system-id: inputs.service-now-system-id

@@ -48,8 +48,8 @@ runs:
       with:
         create_credentials_file: true
         token_format: access_token
-        workload_identity_provider: inputs.identity-provider
-        service_account: inputs.service-account-email
+        workload_identity_provider: ${{ inputs.identity-provider }}
+        service_account: ${{ inputs.service-account-email }}
 
     - name: 🐳 Set up Docker Buildx
       id: builder
@@ -87,19 +87,19 @@ runs:
       id: deploy
       uses: google-github-actions/deploy-cloudrun@v0
       with:
-        service: inputs.service
+        service: ${{ inputs.service }}
         image: gcr.io/${{ inputs.project-id }}/${{ inputs.service }}:latest
-        region: inputs.region
-        env_vars: inputs.env-vars
-        flags: inputs.flags
+        region: ${{ inputs.region }}
+        env_vars: ${{ inputs.env-vars }}
+        flags: ${{ inputs.flags }}
 
     - name: 🔔 Publish deployment worknote
       uses: agrc/service-now-worknote-action@v1
-      if: inputs.service-now-system-id
+      if: ${{ inputs.service-now-system-id }}
       with:
-        repo-token: inputs.repo-token
-        username: inputs.service-now-username
-        password: inputs.service-now-password
-        instance-name: inputs.service-now-instance
-        table-name: inputs.service-now-table
-        system-id: inputs.service-now-system-id
+        repo-token: ${{ inputs.repo-token }}
+        username: ${{ inputs.service-now-username }}
+        password: ${{ inputs.service-now-password }}
+        instance-name: ${{ inputs.service-now-instance }}
+        table-name: ${{ inputs.service-now-table }}
+        system-id: ${{ inputs.service-now-system-id }}

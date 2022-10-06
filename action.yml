@@ -63,7 +63,7 @@ runs:
       with:
         registry: gcr.io
         username: oauth2accesstoken
-        password: steps.auth.outputs.access_token
+        password: ${{ steps.auth.outputs.access_token }}
 
     - name: 🏷️ Extract tags from GitHub
       id: meta
@@ -79,8 +79,8 @@ runs:
     - name: 📦 Build and push image
       uses: docker/build-push-action@v3
       with:
-        builder: steps.builder.outputs.name
-        tags: steps.meta.outputs.tags
+        builder: ${{ steps.builder.outputs.name }}
+        tags: ${{ steps.meta.outputs.tags }}
         context: .
         push: true
         cache-from: type=gha

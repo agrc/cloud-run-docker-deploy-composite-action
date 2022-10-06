@@ -38,6 +38,9 @@ inputs:
   service-now-password:
     description: the service account password
     required: false
+  repo-token:
+    description: GitHub token (e.g. secrets.GITHUB_TOKEN). This is only required if you are providing the service now inputs
+    required: false
 
 runs:
   using: composite

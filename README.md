@@ -64,19 +64,22 @@ jobs:
 
     steps:
       - name: 🚀 Deploy
-        uses: agrc/cloud-run-docker-deploy-composite-action@dev
+        uses: agrc/cloud-run-docker-deploy-composite-action@v1
         with:
-          identity-provider: secrets.IDENTITY_PROVIDER
-          service-account-email: secrets.SERVICE_ACCOUNT_EMAIL
-          project-id: secrets.PROJECT_ID
+          identity-provider: ${{ secrets.IDENTITY_PROVIDER }}
+          service-account-email: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+          project-id: ${{ secrets.PROJECT_ID }}
           service: printproxy
           flags: |
             --service-account=cloud-run-sa@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com
             --allow-unauthenticated
-          env-vars: 'OPEN_QUAD_WORD=${{ secrets.OPEN_QUAD_WORD }}'
-          service-now-instance: secrets.SN_INSTANCE
-          service-now-table: secrets.SN_TABLE
-          service-now-system-id: secrets.SN_SYS_ID
-          service-now-username: secrets.SN_USERNAME
-          service-now-password: secrets.SN_PASSWORD
+          env-vars: |
+            OPEN_QUAD_WORD=${{ secrets.OPEN_QUAD_WORD }}
+            ANOTHER_VAR=example
+          service-now-instance: ${{ secrets.SN_INSTANCE }}
+          service-now-table: ${{ secrets.SN_TABLE }}
+          service-now-system-id: ${{ secrets.SN_SYS_ID }}
+          service-now-username: ${{ secrets.SN_USERNAME }}
+          service-now-password: ${{ secrets.SN_PASSWORD }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```

@@ -8,13 +8,17 @@ Note that the following inputs map directly to the [google-github-actions/deploy
 
 - `env-vars`
 - `flags`
+- `mounted-secrets`*
 - `region`
 - `service`
-- `mounted-secrets`*
 
 _\* doesn't map directly_
 
 Note that the following inputs map directly to the [docker/build-push-action](https://github.com/docker/build-push-action#inputs) with a `docker-` prefix:
+
+- `docker-build-args`
+- `docker-context`
+- `docker-file`
 
 ```yml
 name: Push Events

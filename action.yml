@@ -22,6 +22,13 @@ inputs:
   mounted-secrets:
     description: Cloud run secret mounts. (e.g. /secret/folder/file=secret:latest)
     required: false
+  docker-context:
+    description: Context for docker Build
+    required: false
+    default: .
+  docker-file:
+    description: Path to Dockerfile
+    required: false
   docker-build-args:
     description: Environment variables to set in the docker image build. (e.g. VITE_DISCOVER=value,VITE_PRINT_PROXY=value)
     required: false
@@ -90,7 +97,8 @@ runs:
       with:
         builder: ${{ steps.builder.outputs.name }}
         tags: ${{ steps.meta.outputs.tags }}
-        context: .
+        context: ${{ inputs.docker-context }}
+        file: ${{ inputs.docker-file }}
         build-args: ${{ inputs.docker-build-args }}
         push: true
         cache-from: type=gha

@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/agrc/cloud-run-docker-deploy-composite-action/compare/v1.0.0...v1.1.0) (2022-10-12)
+
+
+### 📖 Documentation Improvements
+
+* fix syntax and switch to v1 in example ([7e7184b](https://github.com/agrc/cloud-run-docker-deploy-composite-action/commit/7e7184b5bfe60f8fe1bdebbbf28872c944436388))
+
+
+### 🚀 Features
+
+* add docker-context and docker-file input parameters ([f4a0394](https://github.com/agrc/cloud-run-docker-deploy-composite-action/commit/f4a03943fe405cb8892ffde6558fc09662d20d58))
+
 ## 1.0.0 (2022-10-06)
 
 

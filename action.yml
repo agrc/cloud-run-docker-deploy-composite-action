@@ -63,7 +63,7 @@ runs:
 
     - name: 🗝️ Authenticate to Google Cloud
       id: auth
-      uses: google-github-actions/auth@v0
+      uses: google-github-actions/auth@v1
       with:
         create_credentials_file: true
         token_format: access_token
@@ -106,7 +106,7 @@ runs:
 
     - name: 🚀 Deploy to Cloud Run
       id: deploy
-      uses: google-github-actions/deploy-cloudrun@v0
+      uses: google-github-actions/deploy-cloudrun@v1
       with:
         service: ${{ inputs.service }}
         image: gcr.io/${{ inputs.project-id }}/${{ inputs.service }}:latest

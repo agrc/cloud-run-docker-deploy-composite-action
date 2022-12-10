@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/agrc/cloud-run-docker-deploy-composite-action/compare/v1.1.0...v1.1.1) (2022-12-10)
+
+
+### 🐛 Bug Fixes
+
+* December dependency bumps 🌲 ([738853d](https://github.com/agrc/cloud-run-docker-deploy-composite-action/commit/738853d8b70a625fb2ffa2e703c01abc17a1ace3))
+
 ## [1.1.0](https://github.com/agrc/cloud-run-docker-deploy-composite-action/compare/v1.0.0...v1.1.0) (2022-10-12)
 
 

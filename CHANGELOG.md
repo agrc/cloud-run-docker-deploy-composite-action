@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/agrc/cloud-run-docker-deploy-composite-action/compare/v1.1.1...v1.1.2) (2023-01-25)
+
+
+### 🐛 Bug Fixes
+
+* disable SLSA provenance since GCR doesn't support it ([3c4c196](https://github.com/agrc/cloud-run-docker-deploy-composite-action/commit/3c4c196049b22d6c1352bf6a0f1e9fc69048d3dd)), closes [#13](https://github.com/agrc/cloud-run-docker-deploy-composite-action/issues/13)
+
 ## [1.1.1](https://github.com/agrc/cloud-run-docker-deploy-composite-action/compare/v1.1.0...v1.1.1) (2022-12-10)
 
 

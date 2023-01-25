@@ -103,6 +103,7 @@ runs:
         push: true
         cache-from: type=gha
         cache-to: type=gha,mode=max
+        provenance: false
 
     - name: 🚀 Deploy to Cloud Run
       id: deploy

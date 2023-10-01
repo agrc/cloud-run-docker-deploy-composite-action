@@ -83,7 +83,7 @@ runs:
 
     - name: 🏷️ Extract tags from GitHub
       id: meta
-      uses: docker/metadata-action@v4
+      uses: docker/metadata-action@v5
       with:
         images: gcr.io/${{ inputs.project-id }}/${{ inputs.service }}
         tags: |

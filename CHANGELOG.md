@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0-0](https://github.com/agrc/cloud-run-docker-deploy-composite-action/compare/v1.1.2...v2.0.0-0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* Requires creation of artifact registry in the associated GCP project.
+
+### 🐛 Bug Fixes
+
+* migrate from container to artifact registry ([dcd9621](https://github.com/agrc/cloud-run-docker-deploy-composite-action/commit/dcd96210f5e069ed1160c1f8e0992ccefd854d06)), closes [#23](https://github.com/agrc/cloud-run-docker-deploy-composite-action/issues/23)
+
+
+### 🌲 Dependencies
+
+* bump the ci-dependencies group with 5 updates ([c8510e1](https://github.com/agrc/cloud-run-docker-deploy-composite-action/commit/c8510e1be9e89f8ddfa963c53344abea96a1d1ba))
+* bump the ci-dependencies group with 5 updates ([fda11e1](https://github.com/agrc/cloud-run-docker-deploy-composite-action/commit/fda11e1b5fa3fb8d3c8d5221adc161efcda7a5c0))
+
 ## [1.1.2](https://github.com/agrc/cloud-run-docker-deploy-composite-action/compare/v1.1.1...v1.1.2) (2023-01-25)
 
 

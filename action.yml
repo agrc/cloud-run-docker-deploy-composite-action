@@ -107,12 +107,18 @@ runs:
         cache-to: type=gha,mode=max
         provenance: false
 
+    - name: 🔍️ Set image name
+      shell: bash
+      run: |
+        IMAGE_ID=$(echo $DOCKER_METADATA_OUTPUT_TAGS | cut -d ' ' -f 1)
+        echo "IMAGE_ID=$IMAGE_ID" >> $GITHUB_ENV
+
     - name: 🚀 Deploy to Cloud Run
       id: deploy
       uses: google-github-actions/deploy-cloudrun@v2
       with:
         service: ${{ inputs.service }}
-        image: us-central1-docker.pkg.dev/${{ inputs.project-id }}/images/${{ inputs.service }}:latest
+        image: ${{ env.IMAGE_ID }}
         region: ${{ inputs.region }}
         env_vars: ${{ inputs.env-vars }}
         flags: ${{ inputs.flags }}

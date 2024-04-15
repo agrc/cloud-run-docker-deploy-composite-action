@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.1](https://github.com/agrc/cloud-run-docker-deploy-composite-action/compare/v2.0.0...v2.0.1) (2024-04-15)
+
+
+### 🐛 Bug Fixes
+
+* use image id instead of latest ([bbd7b44](https://github.com/agrc/cloud-run-docker-deploy-composite-action/commit/bbd7b449981e7589c8586bddae79cf3025373b58))
+
+
+### 🌲 Dependencies
+
+* bump the ci-dependencies group with 2 updates ([06d3f9b](https://github.com/agrc/cloud-run-docker-deploy-composite-action/commit/06d3f9bf4c77a515ad1422132d1609848c65f2c0))
+
 ## [2.0.0](https://github.com/agrc/cloud-run-docker-deploy-composite-action/compare/v1.1.2...v2.0.0) (2023-10-11)
 
 

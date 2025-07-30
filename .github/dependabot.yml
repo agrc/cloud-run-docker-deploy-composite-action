@@ -11,3 +11,5 @@ updates:
       prefix: deps
     cooldown:
       default-days: 10
+      exclude:
+        - agrc/*

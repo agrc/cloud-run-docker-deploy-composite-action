@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.3](https://github.com/agrc/cloud-run-docker-deploy-composite-action/compare/v2.0.2...v2.0.3) (2025-11-11)
+
+
+### Dependencies
+
+* bump the ci-dependencies group across 1 directory with 3 updates ([c2b9f45](https://github.com/agrc/cloud-run-docker-deploy-composite-action/commit/c2b9f45b5a1ecee51633a6eacb032c6b48bf24e2))
+
 ## [2.0.2](https://github.com/agrc/cloud-run-docker-deploy-composite-action/compare/v2.0.1...v2.0.2) (2024-07-10)
 
 

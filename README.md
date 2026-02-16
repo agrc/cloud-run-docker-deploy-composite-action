@@ -87,3 +87,7 @@ jobs:
           service-now-password: ${{ secrets.SN_PASSWORD }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+## Attribution
+
+This project was developed with the assistance of [GitHub Copilot](https://github.com/features/copilot).

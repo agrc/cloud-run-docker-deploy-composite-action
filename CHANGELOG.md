@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.4](https://github.com/agrc/cloud-run-docker-deploy-composite-action/compare/v2.0.3...v2.0.4) (2026-02-16)
+
+
+### Dependencies
+
+* bump actions/checkout from 5 to 6 in the ci-dependencies group ([8e079ce](https://github.com/agrc/cloud-run-docker-deploy-composite-action/commit/8e079cebb0cffa028491c13eed6b8c5e997af145))
+
 ## [2.0.3](https://github.com/agrc/cloud-run-docker-deploy-composite-action/compare/v2.0.2...v2.0.3) (2025-11-11)
 
 

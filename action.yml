@@ -59,7 +59,7 @@ runs:
   using: composite
   steps:
     - name: ⬇️ Set up code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
           show-progress: false
 
@@ -95,7 +95,7 @@ runs:
           type=raw,value=latest
 
     - name: 📦 Build and push image
-      uses: docker/build-push-action@v7
+      uses: docker/build-push-action@v7.2.0
       with:
         builder: ${{ steps.builder.outputs.name }}
         tags: ${{ steps.meta.outputs.tags }}

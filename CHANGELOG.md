@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.7](https://github.com/agrc/cloud-run-docker-deploy-composite-action/compare/v2.0.6...v2.0.7) (2026-10-28)
+
+
+### Dependencies
+
+* bump docker/build-push-action from 7.2.0 to 7.4.0 in the ci-dependencies group ([#44](https://github.com/agrc/cloud-run-docker-deploy-composite-action/issues/44)) ([ee3f031](https://github.com/agrc/cloud-run-docker-deploy-composite-action/commit/ee3f031a35fe3e349fa45472d0fa24cbfb9fd26a))
+
 ## [2.0.6](https://github.com/agrc/cloud-run-docker-deploy-composite-action/compare/v2.0.5...v2.0.6) (2026-08-07)
 
 
